@@ -15,5 +15,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    
+
+    <!-- Button bar -->
+    <LinearLayout
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/main_button_sync"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/accent"
+            android:text="@string/main_button_sync"
+            android:textColor="#fff"
+            android:textSize="10dp"
+            android:textAllCaps="true"/>
+    </LinearLayout>
 </LinearLayout>
