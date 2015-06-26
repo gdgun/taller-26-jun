@@ -1,5 +1,7 @@
 package co.edu.unal.clima;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -20,6 +22,29 @@ import java.util.ArrayList;
 public class FetchWeatherTask extends AsyncTask<String, Void, ArrayList<Weather>> {
 
     private final String LOG_TAG = "FetchWeatherTask";
+    private Context context;
+    private ProgressDialog pd;
+
+    public FetchWeatherTask(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pd = new ProgressDialog(context);
+        pd.setMessage(context.getString(R.string.async_task_fetch_weather_task));
+        pd.setCancelable(false);
+        pd.show();
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<Weather> weathers) {
+        super.onPostExecute(weathers);
+        pd.dismiss();
+    }
+
+
 
     @Override
     protected ArrayList<Weather> doInBackground(String... params) {
