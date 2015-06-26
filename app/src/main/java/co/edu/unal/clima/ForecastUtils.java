@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
 
 /**
  * Created by jiacontrerasp on 6/26/15.
@@ -17,7 +16,7 @@ import java.util.Vector;
 public class ForecastUtils {
 
 
-    private final String LOG_TAG = "ForecastUtils";
+    private static final String LOG_TAG = "ForecastUtils";
 
     /**
      * Take the String representing the complete forecast in JSON Format and
@@ -26,8 +25,8 @@ public class ForecastUtils {
      * Fortunately parsing is easy:  constructor takes the JSON string and converts it
      * into an Object hierarchy for us.
      */
-    private void getWeatherDataFromJson(String forecastJsonStr, int numDays,
-                                        String locationSetting)
+    public static ArrayList<Weather> getWeatherDataFromJson(String forecastJsonStr, int numDays,
+                                              String locationSetting)
             throws JSONException {
 
         // These are the names of the JSON objects that need to be extracted.
@@ -67,9 +66,6 @@ public class ForecastUtils {
         double cityLongitude = coordJSON.getLong(OWM_COORD_LONG);
 
         Log.v(LOG_TAG, cityName + ", with coord: " + cityLatitude + " " + cityLongitude);
-
-        // Get and insert the new weather information into the database
-        Vector<ContentValues> cVVector = new Vector<ContentValues>(weatherArray.length());
 
         ArrayList<Weather> resultWeathers = new ArrayList<>();
 
@@ -135,6 +131,8 @@ public class ForecastUtils {
         if (resultWeathers.size() > 0) {
             //No se encontró nada
         }
+
+        return resultWeathers;
     }
 
 }
