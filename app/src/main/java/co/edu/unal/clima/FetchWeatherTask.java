@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by jiacontrerasp on 6/26/15.
  */
-public class FetchWeatherTask extends AsyncTask<String, Void, ArrayList<Weather>> {
+public class FetchWeatherTask extends AsyncTask<String, Integer, ArrayList<Weather>> {
 
     private final String LOG_TAG = "FetchWeatherTask";
     private Context context;
@@ -44,6 +44,10 @@ public class FetchWeatherTask extends AsyncTask<String, Void, ArrayList<Weather>
         pd.dismiss();
     }
 
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+    }
 
 
     @Override
